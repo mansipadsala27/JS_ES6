@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+           background-color: black;
+           height: 100px;
+           width: 100px; 
+           margin-bottom: 10px;
+           color: white;
+        }
+        span{
+            background-color: red;
+            color: white;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body>
+   
+   
+
+    <div class="box" onmouseup="mouseUp()">
+        <p>mouse up</p>
+    </div>
+
+     <div class="box" onmousemove="mouseMove()">
+        <p>mouse move</p>
+    </div>  
+
+    <div class="box" onmousedown="mouseDown()">
+        mouse down
+    </div>
+
+    <button onclick="Click()">Click me once </button>
+    <button ondblclick="dblClick()">Click me twice </button>
+    <hr>
+    <span onmouseover="mouseOver()">mouse over me </span>
+    <span onmouseout="mouseOut()">mouse out me </span>
+     
+    <h1 id="h1"></h1>
+    <script>
+        let cnt=0
+        let mouseMove=()=>{
+            cnt++
+            document.getElementById("h1").innerHTML=cnt
+        }
+
+        let mouseUp=()=>{
+            cnt++
+            document.getElementById("h1").innerHTML=cnt
+        }
+
+        let mouseDown=()=>{
+            cnt++
+            document.getElementById("h1").innerHTML=cnt
+        }
+        let Click=()=>{
+            document.getElementById("h1").innerHTML="button is clicked "
+        }
+
+        let dblClick=()=>{
+            document.getElementById("h1").innerHTML="button is clicked "
+        }
+        let mouseOver=()=>{
+            alert("mouse over event successfully")
+            
+        }
+
+        let mouseOut=()=>{
+            alert("mouse outtt event successfully")
+            
+        }
+    </script>
+</body>
+</html>

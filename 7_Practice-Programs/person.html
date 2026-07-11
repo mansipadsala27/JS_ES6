@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(name,age,country){
+                this.name=name
+                this.age=age
+                this.country=country
+            }
+
+            getter(){
+                console.log(`Hello ${this.name}.Your age is : ${this.age} and you are from ${this.country} country.`);
+            }
+            setter(name){
+                this.name=name
+                console.log(`Your name is updated..`);
+                
+            }
+        
+        }
+        let p1=new Person("Mansi Padsala",21,"india")
+        p1.setter("Hensi")
+        p1.getter()
+
+         let p2=new Person("Rajvi gajera",20,"USA")
+        p2.getter()
+    </script>
+</body>
+</html>

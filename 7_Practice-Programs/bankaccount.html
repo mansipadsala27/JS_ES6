@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Bankaccount{
+            #balance=0
+            constructor(accno,balance){
+                this.accno=accno
+                this.#balance=balance
+            }
+
+            deposite(amount){
+                if(amount>0){
+                    this.#balance+=amount
+                    console.log(`Your ${amount} rupees deposite succefully in ${this.accno}.`);
+                
+                }
+                else{
+                    console.log(`please enter valid amount.`);
+                    
+                }
+                
+            }
+
+            withdraw(amount){
+                if(amount>this.#balance){
+                    console.log(`sorry! its insufficiance amount in your account`);                    
+                }
+                else{
+                    this.#balance-=amount
+                    console.log(`${amount} rupees withdraw succefully from ${this.accno}`);
+                    console.log(`Clear balance is : ${this.#balance}`);
+
+                }
+            }
+        }
+
+        let b=new Bankaccount("0121091",1000)
+        b.deposite(500)
+        b.withdraw(600)
+        
+    </script>
+</body>
+</html>

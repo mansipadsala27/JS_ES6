@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+
+
+    <style>
+        /* .box{
+            background-color:rgb(184, 202, 217);
+            text-align: center;
+            align-items: center;
+            margin: 150px 500px;
+            padding: 30px;
+        }
+        button{
+            
+            border: 1px solid black ;
+            background-color: aliceblue;
+            padding: 8px 12px;
+            border-radius: 5px ;
+        }
+        h1{
+            text-align: center;
+        }
+        h2{
+
+            color: white;
+            background-color: black;
+            padding: 8px 10px;
+
+        } */
+
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #526d62, #bfdbfe);
+}
+
+.box{
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 350px;
+}
+
+h1{
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2{
+    background: #222;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+button{
+    border: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#increment{
+    background: #97c0db;
+    color: #374151;
+
+}
+
+#reset{
+    background: #bec883;
+    color: #374151;
+}
+
+#decrement{
+    background: #c691af;
+    color: #374151;
+
+}
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+button:disabled{
+    background: #bdbdbd;
+    cursor: not-allowed;
+}
+
+</style>
+</head>
+<body>
+    <div class="box">
+    <h1>Counter</h1>
+    <h2 id="counter"></h2>
+
+    <button id="increment" onclick="add()">+</button>
+    <button id="reset" onclick="reset()">Reset</button>
+    <button id="decrement" onclick="min()">-</button>
+
+    </div>
+
+
+
+    <script>
+        let cnt=0
+        document.getElementById('counter')
+        document.getElementById('increment')
+        document.getElementById('decrement')
+
+        document.getElementById('counter').innerHTML=0
+
+        if(cnt<=0){
+                cnt=0
+                document.getElementById('counter').innerHTML=cnt
+                document.getElementById('decrement').disabled=true
+        }
+
+
+        let reset=()=>{
+            cnt=0;
+            document.getElementById('counter').innerHTML=cnt
+
+            if(cnt<=0){
+                cnt=0
+                document.getElementById('counter').innerHTML=cnt
+                document.getElementById('decrement').disabled=true
+        }   
+
+        }
+        let add=()=>
+        {
+            cnt++
+            document.getElementById('counter').innerHTML=cnt
+
+            if(cnt>0){
+                document.getElementById('decrement').disabled=false
+
+            }
+        }
+        let min=()=>
+        {
+            
+            cnt--
+            document.getElementById('counter').innerHTML=cnt
+             
+         if(cnt<=0){
+                cnt=0
+                document.getElementById('counter').innerHTML=cnt
+                document.getElementById('decrement').disabled=true
+            }
+            
+           
+        }
+
+        
+    </script>
+
+</body>
+</html>

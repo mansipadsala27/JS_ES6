@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        class Shape{
+                area()
+                {
+                
+                }
+            }
+            class Circle extends Shape{
+                constructor(r){
+                    super()
+                    this.r=r
+                }
+                area(){
+                    console.log(`Area of circle is : ${3.14* this.r * this.r}`);              
+                    
+                }
+            }
+            class Triangle extends Shape{
+                constructor(b,h){
+                    super()
+                    this.b=b
+                    this.h=h
+
+                }
+                area(){
+                    console.log(`Area of triangle is : ${0.5*this.b*this.h}`);
+                    
+                }
+            }
+
+            let c=new Circle(5)
+            c.area()
+
+            let t=new Triangle(2,3)
+            t.area(             )
+
+
+    </script>
+
+</body>
+</html>

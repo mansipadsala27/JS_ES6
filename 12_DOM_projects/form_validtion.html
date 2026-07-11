@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+      
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h2{
+            text-align: center;
+            margin: 20px 0px;
+        }
+        label{
+            display: inline-block;
+            margin: 10px 0px;
+        }
+        body{
+            font-family: Arial;
+            background: #cbe3ad7a;
+        }
+        .container{
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"], select{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button{
+            margin: 0 25%;
+            font-size: 16px;
+            color: rgb(255, 252, 252);
+            background-color: rgb(82, 88, 65);
+            padding: 10px 60px;
+            border-radius: 5px;
+        }
+        button:hover{
+            transform: translateY(2px);
+             background-color: rgb(71, 77, 55);
+        }
+        span{
+            color: red;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <h2>Registration Form</h2>
+            <form id="myForm">
+                <label>Name:</label>
+                <input type="text" id="name">
+                <span id="nameError"></span>
+                <label>Email:</label>
+                <input type="text" id="email">
+                <span id="emailError"></span>
+                <label>Password:</label>
+                <input type="password" id="password">
+                <span id="passwordError"></span>
+                <label>Gender:</label>
+                <div>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                </div>
+                <span id="genderError"></span>
+
+                <label>City:</label>
+                <select id="city">
+                    <option value>Select City</option>
+                    <option>Surat</option>
+                    <option>Ahmedabad</option>
+                    <option>Mumbai</option>
+                </select>
+                <span id="cityError"></span>
+                <button type="button" id="submitbtn">Submit</button>
+            </form>
+        </div>
+        <script>
+    
+       let form = document.getElementById("myForm");
+       let submitbtn=document.getElementById('submitbtn')
+
+       submitbtn.addEventListener("click", function(event){
+  
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+            document.getElementById("genderError").innerHTML = "";
+            document.getElementById("cityError").innerHTML = "";
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let city = document.getElementById("city").value;
+
+            let gender = document.querySelector(
+            'input[name="gender"]:checked'
+            );
+            
+            let valid = true;
+            
+            if(name === ""){
+                document.getElementById("nameError").innerHTML = "Name is required";
+                valid = false;
+            }
+            
+            let emailPattern =
+            /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if(email === ""){
+                document.getElementById("emailError").innerHTML = "Email is required";
+                valid = false;
+            }
+            else if(!email.match(emailPattern)){
+                document.getElementById("emailError").innerHTML = "Invalid email";
+                valid = false;
+            }
+           
+            if(password === ""){
+                document.getElementById("passwordError").innerHTML = "Password is required";
+                valid = false;
+
+            }
+            else if(password.length < 6){
+                document.getElementById("passwordError").innerHTML ="Password must be 6 characters";
+                valid = false;
+            }
+            
+            if(!gender){
+                document.getElementById("genderError").innerHTML = "Select gender";
+                valid = false;
+            }
+           
+            if(city === ""){
+                document.getElementById("cityError").innerHTML = "Select city";
+                valid = false;
+            }
+
+            if(valid){
+            
+                let form = document.getElementById("myForm").reset();
+                alert("Form Submitted Successfully");
+
+            }
+        });
+        
+    </script>
+    </body>
+</html>

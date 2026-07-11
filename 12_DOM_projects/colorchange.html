@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Background Changer</title>
+<style>
+    
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        transition: background-color 0.3s ease; /* Makes color swaps smooth
+        */
+    }
+    .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+    }
+    button:hover {
+        background-color: #555;
+    }
+
+</style>
+<!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Background Color: <span
+    id="color-code">#FFFFFF</span>
+   </h2>
+
+   <button id="change-btn">Change Color</button>
+
+</div>
+
+<script>
+    
+    const changeBtn = document.getElementById('change-btn');
+    const colorCodeText = document.getElementById('color-code');
+    const hexCharacters = '0123456789ABCDEF';
+    
+    function generateRandomHex() {
+    let hexColor = '#';
+        for (let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() *
+            hexCharacters.length);
+            hexColor += hexCharacters[randomIndex];
+        }
+        return hexColor; 
+    
+    }
+        changeBtn.addEventListener('click', () => {
+        const newColor = generateRandomHex();
+        document.body.style.backgroundColor = newColor;
+        colorCodeText.textContent = newColor;
+    });
+
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class University{
+
+            constructor(){
+                
+                this.uniname=[]
+                this.dept=[]
+               
+            }
+            addrecord(name,dept){
+                this.uniname.push(name)
+                this.dept.push(dept)
+                // console.log(`Your name : ${name} and department name : ${dept} is added.`);
+                
+            }
+            
+            remove(){
+                console.log(`---------------- After removing : ----------`);
+                this.uniname.pop()
+                this.dept.pop()
+              
+            }
+            display(){
+                console.log(`university names are : `);
+                console.log(this.uniname);
+                console.log(`Department names are : `);
+                console.log(this.dept);
+
+                
+            }
+        }
+        let s1=new University()
+        s1.addrecord("GTU","AI/ML")
+        s1.addrecord("Guj","Datascience")
+        s1.addrecord("PPSU","cyber security")
+        
+        s1.display()       
+        s1.remove()
+        s1.display()
+
+    </script>
+</body>
+</html>

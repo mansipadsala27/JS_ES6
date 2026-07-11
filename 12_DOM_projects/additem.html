@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do list</title>
+
+     <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#add1f0,#9cdbdf);
+}
+
+.container{
+    width:450px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h2{
+  
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+.input-box{
+    display:flex;
+    gap:10px;
+}
+
+#ipitem{
+    flex:1;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+#ipitem:focus{
+    border-color:#2196f3;
+}
+
+#addBtn{
+    padding:12px 20px;
+    border:none;
+    background:#2196f3;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#addBtn:hover{
+    background:#0d8bf2;
+}
+
+#mylist{
+    list-style:none;
+    margin-top:25px;
+}
+
+#mylist li{
+    background:#f4f4f4;
+    margin-bottom:10px;
+    padding:14px;
+    border-radius:8px;
+    border-left:5px solid #2196f3;
+    font-size:17px;
+}
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List </h2>
+   <div class="input-box">
+     <input type="text" id="ipitem" placeholder="Enter item name....">
+    <button id="addBtn"> Add item </button>
+   </div>
+
+    <ul id="mylist">
+
+    </ul>
+    </div>
+
+
+</body>
+
+<script>
+    let ipitem=document.getElementById('ipitem')
+    let addBtn=document.getElementById('addBtn')
+    let mylist=document.getElementById('mylist')
+
+    addBtn.addEventListener('click',()=>{
+        
+        let itemvalue=ipitem.value.trim()
+        if(itemvalue===""){
+            alert("Enter valid item !")
+            return 
+        }
+
+        let list=document.createElement('li')
+        list.textContent=itemvalue
+
+        mylist.append(list)
+        
+        ipitem.value=""
+    })
+
+</script>
+</html>

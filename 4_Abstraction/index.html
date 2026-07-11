@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    // ----------------------------------------------------
+
+    // class Car{
+    //     start(){
+    //         this.#checkengine()
+    //         console.log("car is started...");
+            
+    //     }
+    //     #checkengine(){
+    //         console.log("engine is checked .....");
+            
+    //     }
+    // }
+
+    // let c = new Car
+    // c.start()
+
+    // ---------------------------------------------
+
+    class bank{
+        #balance=0
+
+        withdraw(b){
+            if(b<this.#balance){
+                this.#balance-=b
+                console.log(`you withdraw ${b} rupees.`);
+            }
+            else{
+                console.log(`Sorry ! There is not sufficient amount in your account....`);
+                
+            }
+                        
+        }
+
+        
+        deposite(b){
+            if(b>0){
+                this.#balance+=b
+                console.log(`Deposite succesfully ${b} ruppes.`);
+                
+            }
+            else{
+                console.log(`its not valid amount..!`);
+                
+            }            
+        }
+
+        checkbalance(){
+            console.log(`Total amount in your account is : ${this.#balance}`);
+            
+        }
+    }
+
+    let person=new bank
+    
+    person.checkbalance()
+
+    person.deposite(1000)  
+    person.withdraw(600)
+    
+    person.checkbalance()
+    
+    person.withdraw(600)
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    background:
+    radial-gradient(circle at top,#3b0764,#0f172a 70%);
+    overflow:hidden;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#9333ea;
+    border-radius:50%;
+    filter:blur(150px);
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#06b6d4;
+    border-radius:50%;
+    filter:blur(150px);
+    bottom:-100px;
+    right:-100px;
+}
+
+.dice-container{
+    display:flex;
+    gap:40px;
+    z-index:1;
+}
+
+#dice1,#dice2{
+    width:170px;
+    height:170px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:
+    0 0 20px rgba(255,255,255,0.1),
+    0 0 50px rgba(147,51,234,0.4);
+    transition:0.4s;
+}
+
+#dice1:hover,
+#dice2:hover{
+    transform:translateY(-10px) rotate(5deg);
+}
+
+img{
+    width:120px;
+    height:120px;
+}
+
+#winnername{
+    margin:30px 0;
+    font-size:2rem;
+    color:white;
+    font-weight:700;
+    letter-spacing:1px;
+    text-shadow:0 0 15px #fff;
+    z-index:1;
+}
+
+#playbtn{
+    padding:15px 40px;
+    border:none;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(45deg,#9333ea,#06b6d4);
+    cursor:pointer;
+    box-shadow:
+    0 0 20px rgba(147,51,234,0.6);
+    transition:0.3s;
+    z-index:1;
+}
+
+#playbtn:hover{
+    transform:scale(1.08);
+    box-shadow:
+    0 0 30px rgba(6,182,212,0.8);
+}
+    </style>
+</head>
+<body>
+    
+    <div class="dice-container">
+        <div id="dice1"></div>
+        <div id="dice2"></div>
+    </div>
+
+    <h2 id="winnername"></h2> 
+    <button id="playbtn" onclick="rolldice()">start playing</button>
+
+    <script>
+        let dice1=document.getElementById('dice1')
+        let dice2=document.getElementById('dice2')
+        let playbtn=document.getElementById('playbtn')
+
+        let winnername=document.getElementById('winnername')
+        
+        let rolldice=()=>
+        {
+            playbtn.innerHTML=`roll`
+
+            let random1=Math.floor(Math.random()*6+1)            
+            dice1.innerHTML=`<img src=${random1}.png>`
+
+            let random2=Math.floor(Math.random()*6+1)            
+            dice2.innerHTML=`<img src=${random2}.png>`
+
+            if(random1===random2){
+
+                winnername.innerHTML=`ohh its a draw...!`
+            }
+            else if(random1>random2){
+                winnername.innerHTML=`player 1 is winner!`
+
+            }
+            else{
+                winnername.innerHTML=`player 2 is winner!`
+
+            }
+
+        }
+        
+    </script>
+
+</body>
+</html>
