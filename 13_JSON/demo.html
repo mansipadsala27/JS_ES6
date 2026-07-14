@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <script>
+        // ------------------------------------------------
+
+        // let jsonS=`{"name":"mansi padsala",
+        //             "age":21,
+        //             "course":"full stack development"}`
+
+        // let jsonobj=JSON.parse(jsonS)
+
+        // console.log(jsonobj.name);
+        
+        
+        // ----------------------------------------------------
+
+        // let obj={name:"mansi padsala",
+        //     age :21,
+        //     department: "msc it"
+        // }
+
+        // let jsons=(JSON.stringify(obj));
+        // console.log(jsons);
+
+        // -------------------------------------------------
+
+         let data = [
+            {
+            "id": 1,
+            "country": "india",
+            "state": [
+                        {
+                        "id": 1,
+
+                        "name": "Gujarat",
+                        "city": [
+                            { "id": 1, "name": "surat" },
+                            { "id": 2, "name": "vapi" },
+                            { "id": 3, "name": "rajkot" }
+                            ]
+                        },
+                        {
+                        "id": 2,
+
+                        "name": "Rajasthan",
+                        "city": [
+                            { "id": 1, "name": "jaipur" },
+                            { "id": 2, "name": "udaipur" },
+                            { "id": 3, "name": "ajmer" }
+                            ]
+                        }
+
+                    ]
+            },
+            {
+            "id": 2,
+            "country": "USA"
+            }
+        ];
+        console.log(data[0].state[0].city[0]);
+        
+
+
+        
+        
+        
+
+    </script>
+</body>
+</html>
+

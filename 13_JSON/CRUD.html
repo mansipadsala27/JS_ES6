@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        form{
+            margin: 22px 0px;
+        }
+      
+    </style>
+</head>
+<body>
+
+
+    <div align="center">
+        <form>
+
+            <h2>To Do list </h2>
+            <input type="hidden" id="editid">
+
+            <input id="iprecord" type="text" placeholder="Enter your task">
+            
+            <button type="button" id="addBtn" onclick="addtask()"></button>
+    
+        </form>
+    
+    <table border="1" width="50%">
+        <thead>
+            <tr>
+                <th>Task Id</th>
+                <th>Todo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="records">
+
+        </tbody>
+    </table>
+
+    </div>
+
+
+    <script>
+        let viewtask=()=>{
+             document.getElementById('addBtn').textContent="Add"
+            let data=""
+            let list=JSON.parse(localStorage.getItem('list')) || []
+            list.map((val,index)=>{
+                let {taskid,task,status}=val
+
+                data+=`
+                    <tr align="center">
+                        <td>${taskid}</td>
+                        <td>${task}</td>
+                        <td>${status} || <button onClick="deletetask(${taskid})"> Delete </button>
+                                        || <button onClick="edittask(${taskid})"> Edit </button>
+                        </td>
+                    </tr>
+                `
+            })
+
+                document.getElementById('records').innerHTML = data;
+
+            
+        }
+        viewtask()
+        let addtask=()=>{
+            let iprecord=document.getElementById('iprecord').value;
+            let list=JSON.parse(localStorage.getItem('list')) || [];
+            let editid=document.getElementById('editid').value;
+            
+            if(editid){
+                 let up = list.map((val, index) => {
+                    if (val.taskid == editid) {
+                        val.task = iprecord
+                    }
+                    return val;
+                })
+
+                localStorage.setItem('list', JSON.stringify(up));
+                document.getElementById('editid').value=""
+                document.getElementById('iprecord').value=""
+                 alert("record updated");
+                viewtask()
+            }else{
+                 let obj={
+                taskid:Math.floor(Math.random()*10000),
+                task:iprecord,
+                status:false
+            }
+                    
+                
+                list.push(obj)
+                localStorage.setItem("list",JSON.stringify(list));
+                document.getElementById('iprecord').value=""        
+                viewtask();
+                alert("Add record succefully...!")
+            }
+
+            
+           
+
+            
+            
+
+
+        }
+        let deletetask=(id)=>{
+            
+            let list=JSON.parse(localStorage.getItem('list')) || [];
+            let del=list.filter((val,index)=>{
+                    return val.taskid!=id
+
+            })
+            localStorage.setItem('list',JSON.stringify(del))
+            alert("record deleted")
+            viewtask()
+            
+        }
+
+        let edittask=(id)=>{
+            
+            let list=JSON.parse(localStorage.getItem('list')) || [];
+             let ed=list.find((val)=>{
+                return val.taskid==id
+             })
+             document.getElementById('iprecord').value=ed.task
+             document.getElementById('editid').value=ed.taskid
+
+             document.getElementById('addBtn').textContent="update"
+
+
+            // let iprecord = document.getElementById('iprecord').value;
+
+            // let list1= JSON.parse(localStorage.getItem('list')) || [];
+
+               
+            }
+
+        
+
+        
+    </script>
+</body>
+</html>

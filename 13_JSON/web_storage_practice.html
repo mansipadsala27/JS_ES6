@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        localStorage.setItem("name","mansi padsala")
+        localStorage.setItem("age",21)
+        localStorage.setItem("department","msc it")
+
+        let name=localStorage.getItem("name")
+        let age=localStorage.getItem("age")
+        let dept=localStorage.getItem("department")
+
+        document.write(`${name} <br>`)
+        
+        localStorage.removeItem("name")
+        document.write(`${name} <br>`)
+        
+        // localStorage.clear()
+
+        document.write(`${age}`)
+        
+
+
+    </script>
+</body>
+</html>
