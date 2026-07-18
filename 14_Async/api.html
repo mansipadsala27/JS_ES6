@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>Todo</th>
+            <th>Completed</th>
+            <th>User id</th>
+        </thead>
+        <tbody id="todotable">
+            
+        </tbody>
+    </table>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+    $.ajax({
+      method:'GET',
+      url:'https://dummyjson.com/todos',
+      success:function(data){
+        
+        let todo=data.todos;
+        let res=""
+
+        todo.map((v,i)=>{
+            res+=`
+                <tr>
+                    <td>${v.id}</td>
+                    <td>${v.todo}</td>
+                    <td>${v.completed}</td>
+                    <td>${v.userId}</td>
+                </tr>
+            `
+        })
+
+        document.getElementById('todotable').innerHTML=res
+
+        
+      }
+    })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // -----------------------------simple only async 
+
+        // async function first() 
+        // {
+        //     return "helloo"
+        // }
+
+        // first().then((data)=>{
+        //     console.log(data);
+            
+        // })
+
+        // -------------------- use async and await both 
+
+        // let dataget=()=>{
+        //     return new Promise((resolve)=>{
+        //         setTimeout(()=>{
+        //             resolve("data recived...")
+        //         },2000)
+        //     })
+        // }
+
+        // let load=async ()=>{
+        //     console.log("data loading...");
+        //     let res=await dataget()
+        //     console.log(res);            
+        // }
+        // load()
+
+        // --------------------------    without using await    ----------------
+
+        // let dataget=()=>{
+        //     return new Promise((resolve)=>{
+        //         setTimeout(()=>{
+        //             resolve("data recived...")
+        //         },2000)
+        //     })
+        // }
+        // dataget().then((data)=>{
+        //     console.log(data);
+            
+        // })
+        // .catch((e)=>{
+        //     console.log("error");
+            
+        // })
+
+        // -----------------------------------  Pizza order
+
+        // let pizzaready=()=>{
+        //     return new Promise((resolve)=>{
+        //         setTimeout(()=>{
+        //                resolve("Your Pizza is ready...Enjoy")
+
+        //         },2000)
+        //     })
+        // }
+        // let orderpizza=async ()=>{
+        //     console.log("ordering pizza...");
+
+        //     let res=await pizzaready()
+        //     console.log(res);
+
+        //     console.log("Eating Pizza...");
+            
+        // }
+        // orderpizza()
+
+        // ------------------------------- API -------------
+
+        //  let fetchData=async ()=>{
+        //     let response=await fetch("https://jsonplaceholder.typicode.com/users")
+        //     let data= await response.json()
+        //     console.log(data);
+            
+        // }
+        // fetchData()
+
+        
+    </script>
+</body>
+</html>

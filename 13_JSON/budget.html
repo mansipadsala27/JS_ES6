@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+        
+        .container{
+            width: 90%;
+            margin: 0 auto;
+
+        }
+               
+        .boxes{
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-start;
+            gap: 40px;               /* Space between boxes */
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+            
+        
+    
+            
+        .budget-box{
+            border-radius: 16px;
+            padding: 24px 48px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+            margin: 0;
+        }
+        
+       
+        .budget-box p{
+            font-weight: 600    ;
+            font-size: 24px;
+
+        }
+        .budget-box input{
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px 12px;
+            display: block;
+            margin: 20px 0px;
+        }
+        .budget-box button{
+            border: none;
+            background-color: rgb(49, 17, 226);
+            color: white;
+            font-size: 16px;
+            padding: 10px 12px;
+            border-radius: 4px;
+            margin: 20px 0px;
+
+        }
+
+        
+       
+       .expenses-box{
+            border-radius: 16px;
+            padding: 24px 48px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+            margin: 0;
+        }
+
+        .expenses-box p{
+            font-weight: 600    ;
+            font-size: 24px;
+
+        }
+        .expenses-box input{
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 8px 12px;
+            display: block;
+            margin: 8px 0px;
+        }
+        .expenses-box button{
+            border: none;
+            background-color: rgb(49, 17, 226);
+            color: white;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 8px 0px;
+
+        }
+
+        .total-balance{
+            width: 55%;
+            margin: 40px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .total-balance table{
+            border-radius: 5px;
+            padding: 16px;
+             background-color: rgb(49, 17, 226);
+            color: aliceblue;
+            text-align: center;
+        }
+       
+        .expenses-table{
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+            width: 55%;
+            border-radius: 8px;
+            margin: 20px auto;
+        }
+        .expenses-table p{
+            font-size: 22px;
+            font-weight: 600;
+            padding: 8px 20px;
+            margin: 4px 16px;
+
+        }
+        .expenses-table table{
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+         }
+         .expenses-table button{
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
+            color: navy;
+        }
+
+        .expenses-table button i{
+            color: navy;
+        }
+         .expenses-table table button i{
+           
+            height: 20px;
+            width: 20px;
+         }
+
+    </style>
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="boxes">
+                <div class="budget-box">
+                    <p>Budget</p>
+                    <input type="text" placeholder="Enter total Amount">
+                    <button>Set Budget</button>
+                </div>
+
+                <div class="expenses-box">
+                    <p>Expenses</p>
+                    <input type="text" placeholder="Enter expense">
+                    <input type="text" placeholder="Enter expense Amount">
+                    <button>check Amount</button>
+                </div>
+            </div>
+
+            <div class="total-balance">
+                <table width="100%" id="table1">
+                    <thead>
+                        <tr>
+                            <th>Total Budget</th>
+                            <th>Expenses</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="expenses-table">
+                <p>Expenses List</p>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td width="15%">
+                                <button>
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                            <td width="15%">
+                                <button>
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <script>
+
+        
+        
+    </script>
+    </body>
+</html>

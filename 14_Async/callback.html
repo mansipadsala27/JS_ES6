@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+        // const login=(callback)=>{
+        //     setTimeout(()=>{
+        //         console.log("User logged in ...");
+        //         callback()
+        //     },4000)
+        //     console.log("wait for few sec..");
+            
+            
+        // }
+
+        // const getProfile=(callback)=>{
+        //     setTimeout(()=>{
+        //         console.log("user profile open..");  
+        //         callback()
+        //     },2000)
+        // }
+        // const getOrder=(callback)=>{
+        //     setTimeout(()=>{
+        //         console.log("Order Loaded...");  
+        //         callback()
+        //     },2000)
+        // }
+        // const getPayment=(callback)=>{
+        //     setTimeout(()=>{
+        //         console.log("Payment...");  
+        //         callback()
+        //     },2000)
+        // }
+
+
+        // login(function(){
+        //     getProfile(function(){
+        //         getOrder(()=>{
+        //             getPayment(()=>{
+        //                 console.log("Done...");
+                        
+        //             })
+        //         })
+                
+        //     })
+        // })
+
+            function task1(callback) {
+                setTimeout(() => {
+                    console.log("Task 1 completed");
+                },2000);
+                    callback();
+
+            }
+
+            function task2(callback) {
+                setTimeout(() => {
+                    console.log("Task 2 completed");
+                },1000);
+                callback();
+
+            }
+
+            task1(function () {
+                task2(function () {
+                    console.log("Both tasks completed");
+                });
+            });
+
+
+    </script>
+</body>
+</html>

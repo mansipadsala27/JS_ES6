@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+
+
+    <script>
+
+       
+        let check = new Promise((resolve,reject)=>{
+                let num=3
+                
+                if(num%2==0){
+                    resolve("Even")
+                }
+                else{
+                    reject("Odd")
+                }
+        })
+       
+
+        check
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((e)=>{
+            console.log(e);
+            
+        })
+
+        
+
+     </script>   
+</body>
+</html>
