@@ -53,28 +53,35 @@
         //     })
         // })
 
-            function task1(callback) {
-                setTimeout(() => {
-                    console.log("Task 1 completed");
-                },2000);
-                    callback();
 
+        // ----------------------------------------------
+        
+            let tasks=(no,callback)=>{
+
+                setTimeout(()=>{
+                console.log(`task ${no} completed..`);
+                
+                if(callback){
+                    callback()
+                }
+                else{
+                    setTimeout(()=>{
+                        console.log("all task are completed now !");
+                    },1000)
+                    
+                }
+                },2000)
+                
+                
             }
+            
+            console.log(('Just wait for few sec...'));
 
-            function task2(callback) {
-                setTimeout(() => {
-                    console.log("Task 2 completed");
-                },1000);
-                callback();
-
-            }
-
-            task1(function () {
-                task2(function () {
-                    console.log("Both tasks completed");
-                });
-            });
-
+            tasks(1,()=>{
+                tasks(2,()=>{
+                    tasks(3)
+                })
+            })   
 
     </script>
 </body>

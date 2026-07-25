@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-50">
+
+<div class="max-w-7xl mx-auto py-10 px-5">
+
+    <h1 class="text-4xl font-bold text-center text-orange-600 mb-10">
+        🍽️ Delicious Recipes
+    </h1>
+
+    <div id="recipe-table" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+$.ajax({
+    method: "GET",
+    url: "https://dummyjson.com/recipes",
+
+    success: function(data){
+
+        let recipes = data.recipes;
+        let result = "";
+
+        recipes.map((v)=>{
+
+            result += `
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition duration-300">
+
+                <img src="${v.image}"
+                     alt="${v.name}"
+                     class="w-full h-56 object-cover">
+
+                <div class="p-5">
+
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-gray-800">${v.name}</h2>
+
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">
+                            ⭐ ${v.rating}
+                        </span>
+                    </div>
+
+                    <p class="text-sm text-gray-500 mt-2">
+                        🍴 ${v.cuisine}
+                    </p>
+
+                    <div class="mt-4 space-y-2 text-sm">
+
+                        <p><strong>🥗 Difficulty:</strong> ${v.difficulty}</p>
+
+                        <p><strong>⏱ Prep:</strong> ${v.prepTimeMinutes} mins</p>
+
+                        <p><strong>🔥 Cook:</strong> ${v.cookTimeMinutes} mins</p>
+
+                        <p><strong>🍽 Servings:</strong> ${v.servings}</p>
+
+                        <p><strong>🔥 Calories:</strong> ${v.caloriesPerServing}</p>
+
+                        <p><strong>👨‍🍳 Meal:</strong> ${v.mealType}</p>
+
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap gap-2">
+
+                        ${v.tags.map(tag=>`
+                            <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs">
+                                ${tag}
+                            </span>
+                        `).join("")}
+
+                    </div>
+
+                    <div class="mt-5">
+                        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-semibold">
+                            ❤️ ${v.reviewCount} Reviews
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+            `;
+        });
+
+        $("#recipe-table").html(result);
+    }
+});
+</script>
+
+</body>
+</html>

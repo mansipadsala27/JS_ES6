@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background: linear-gradient(135deg,#eef2ff,#dbeafe);
+            min-height:100vh;
+        }
+
+        .quote-card{
+            background:#fff;
+            border-radius:15px;
+            box-shadow:0 8px 20px rgba(0,0,0,.15);
+            padding:25px;
+            margin-top:50px;
+        }
+
+        h2{
+            color:#064db7;
+            font-weight:bold;
+        }
+
+        table{
+            border-radius:10px;
+            overflow:hidden;
+        }
+
+        tbody tr:hover{
+            background:#f1f5ff;
+            transition:.3s;
+        }
+
+        td{
+            vertical-align:middle;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="quote-card">
+
+        <h2 class="text-center mb-4">Inspirational Quotes</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped align-middle">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th width="8%">ID</th>
+                        <th>Quote</th>
+                        <th width="20%">Author</th>
+                    </tr>
+                </thead>
+
+                <tbody id="quotes_table"></tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+$.ajax({
+    method:'GET',
+    url:'https://dummyjson.com/quotes',
+    success:(data)=>{
+
+        let quote=data.quotes;
+        let result="";
+
+        quote.map((v)=>{
+
+            result+=`
+            <tr>
+                <td class="text-center">${v.id}</td>
+                <td>"${v.quote}"</td>
+                <td><strong>${v.author}</strong></td>
+            </tr>
+            `;
+        });
+
+        document.getElementById('quotes_table').innerHTML=result;
+    }
+});
+</script>
+
+</body>
+</html>

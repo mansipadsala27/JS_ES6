@@ -150,15 +150,16 @@
             <div class="boxes">
                 <div class="budget-box">
                     <p>Budget</p>
-                    <input type="text" placeholder="Enter total Amount">
-                    <button>Set Budget</button>
+                    <input  id="setbudget_amount" type="text" placeholder="Enter total Amount">
+                    <button id="budget_btn">Set Budget</button>
                 </div>
 
                 <div class="expenses-box">
+                    <input type="hidden" id="editId">
                     <p>Expenses</p>
-                    <input type="text" placeholder="Enter expense">
-                    <input type="text" placeholder="Enter expense Amount">
-                    <button>check Amount</button>
+                    <input id="expense_title" type="text" placeholder="Enter expense">
+                    <input id="expense_amount" type="text" placeholder="Enter expense Amount">
+                    <button id="expense_btn">check Amount</button>
                 </div>
             </div>
 
@@ -173,9 +174,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td id="totalbalance_display">0</td>
+                            <td id="expense_display">0</td>
+                            <td id="balance_display">0</td>
                         </tr>
                     </tbody>
                 </table>
@@ -184,21 +185,8 @@
             <div class="expenses-table">
                 <p>Expenses List</p>
                 <table width="100%">
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td width="15%">
-                                <button>
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                            <td width="15%">
-                                <button>
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <tbody id="expenses_list">
+                        
                     </tbody>
                 </table>
             </div>
@@ -206,9 +194,188 @@
         </div>
 
         <script>
+            
+            let budget = 0;
+            let totalExpense = 0;
+            let balance = 0;
 
-        
-        
-    </script>
+            let expenses = JSON.parse(localStorage.getItem('expenses')) || []
+
+            let setbudget_amount=document.getElementById('setbudget_amount')
+            let budget_btn=document.getElementById('budget_btn')
+            
+            let expense_title=document.getElementById('expense_title')
+            let expense_amount=document.getElementById('expense_amount')
+            let expense_btn=document.getElementById('expense_btn')
+
+            let totalbalance_display=document.getElementById('totalbalance_display')
+            let expense_display=document.getElementById('expense_display')
+            let balance_display=document.getElementById('balance_display')
+            
+            budget_btn.addEventListener('click',()=>{
+                let value=setbudget_amount.value
+                if(value=="" || value <=0 || isNaN(value)){
+                    alert('please enter the valid input...')
+                    return; 
+                }
+                
+                budget = Number(value);
+
+
+                localStorage.setItem('budget',budget)
+                setbudget_amount.value=""
+                totalBudget();
+
+            })
+
+                let totalBudget = () => {
+               
+
+                    let total_budget = JSON.parse(localStorage.getItem('budget'));
+                    totalbalance_display.textContent=budget
+                    
+                    return total_budget;
+                }
+                totalBudget()
+
+            expense_btn.addEventListener('click',()=>{
+                
+             let expenses = JSON.parse(localStorage.getItem('expenses')) || []
+             let budget= Number( localStorage.getItem('budget'))
+
+                let exp_title=expense_title.value
+                let exp_amt = Number(expense_amount.value);   
+                let editId = document.getElementById("editId").value;           
+                
+                // let exp_list=document.getElementById('expenses_list')
+                
+                 if(exp_title === "" || isNaN(exp_amt) ||exp_amt === "" || exp_amt <= 0){
+                    alert("please enter the valid input...");
+                    return;
+                }
+
+                let totalExpense = expenses.reduce((sum,item) =>{
+                    return sum + Number(item.amount);
+                },0);
+                // expense_display.textContent=totalExpense
+
+                if(editId){
+
+                    let oldExpense = expenses.find(item => item.id == editId);
+
+                    totalExpense = totalExpense - Number(oldExpense.amount);
+
+                }
+
+                if(totalExpense + exp_amt > budget){
+                    alert("Budget exceeded!");
+                    return;
+                }
+
+                if(editId==""){
+
+                const expense={
+                    id:Date.now(),
+                    title:exp_title,
+                    amount:exp_amt
+                }
+
+                expenses.push(expense);
+
+            }
+            else{
+
+                expenses = expenses.map(item=>{
+
+                    if(item.id==editId){
+
+                        return{
+                            id:item.id,
+                            title:exp_title,
+                            amount:exp_amt
+                        }
+
+                    }
+
+                    return item;
+
+                });
+
+                document.getElementById("editId").value="";
+                expense_btn.textContent="check Amount";
+            }
+
+            localStorage.setItem("expenses", JSON.stringify(expenses));
+                
+                expense_title.value=""
+                expense_amount.value=""
+                viewexpense()
+                
+            })
+
+          function viewexpense() {
+
+            let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+            let row = "";
+
+            let totalExpense = expenses.reduce((sum, item) => {
+                return sum + Number(item.amount);
+            }, 0);
+
+            expense_display.textContent = totalExpense;
+
+            let budget = Number(localStorage.getItem("budget"));
+            balance_display.textContent = budget - totalExpense;
+
+            expenses.forEach((val) => {
+                row += `
+                <tr>
+                    <td>${val.title}</td>
+                    <td>${val.amount}</td>
+                    <td width="15%">
+                        <button><i class="fa-solid fa-trash" onclick="deleteexpense(${val.id})"></i></button>
+                    </td>
+                    <td width="15%">
+                        <button><i class="fa-solid fa-pen-to-square" onclick="editexpense(${val.id})"></i></button>
+                    </td>
+                </tr>`;
+            });
+
+            expenses_list.innerHTML = row;
+        }
+        viewexpense()
+
+        const deleteexpense=(id)=>{
+             let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    
+            expenses = expenses.filter((item) => {
+                return item.id !== id;
+            });
+
+            localStorage.setItem("expenses", JSON.stringify(expenses));
+            viewexpense();
+        }
+
+        const editexpense=(id)=>{
+                let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+                
+
+                let expense = expenses.find((item) => {
+                    return item.id === id;
+                })
+                // console.log(expense);
+
+                expense_title.value = expense.title;
+                expense_amount.value = expense.amount;
+
+                document.getElementById("editId").value = expense.id;
+                expense_btn.textContent = "Update Expense"; 
+        }
+
+
+
+
+        </script>
     </body>
 </html>

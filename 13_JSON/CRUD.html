@@ -3,63 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do App</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <style>
-        
-        form{
-            margin: 22px 0px;
-        }
-      
-    </style>
+        body{
+    background:#f4f7fb;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+h2{
+    color: #6f9da9;
+}
+.form-control{
+    height:50px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+}
+
+.form-control:focus{
+    border-color:#2563eb;
+    box-shadow:none;
+}
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead{
+    background:#657b9f;
+    color:white;
+}
+
+.table th{
+    padding:14px;
+}
+
+.table td{
+    padding:14px;
+}
+
+.table tbody tr:hover{
+    background:#f8fafc;
+}
+.task-checkbox{
+    width:15px;
+    height: 15px;
+}
+.btn{
+    border-radius:8px;
+    font-weight:500;
+}
+
+#addBtn{
+    background:#15936b;
+    border:none;
+}
+
+#addBtn:hover{
+    background:#1f795e;
+}
+
+.btn-warning{
+    background:#897046;
+    border:none;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#be8d54;
+    color:white;
+}
+
+.btn-danger{
+    background:#2b6353;
+    border:none;
+}
+
+.btn-danger:hover{
+     background:#2c9777;
+}
+
+.badge{
+    background:#e2e8f0 !important;
+    color:#1e293b !important;
+    font-size:14px;
+    font-weight:500;
+    padding:10px 15px;
+    border-radius:8px;
+}
+</style>
 </head>
 <body>
 
+<div class="container">
 
-    <div align="center">
-        <form>
+    <div class="row justify-content-center">
 
-            <h2>To Do list </h2>
-            <input type="hidden" id="editid">
+        <div class="col-lg-8">
 
-            <input id="iprecord" type="text" placeholder="Enter your task">
-            
-            <button type="button" id="addBtn" onclick="addtask()"></button>
-    
-        </form>
-    
-    <table border="1" width="50%">
-        <thead>
-            <tr>
-                <th>Task Id</th>
-                <th>Todo</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="records">
+            <div class="card p-4">
 
-        </tbody>
-    </table>
+                <h2 class="text-center mb-4">
+                    <i class="bi bi-list-check"></i>
+                    To Do List
+                </h2>
+
+                <form>
+
+                    <input type="hidden" id="editid">
+
+                    <div class="input-group mb-4">
+
+                        <input
+                            type="text"
+                            id="iprecord"
+                            class="form-control"
+                            placeholder="Enter your task">
+
+                        <button
+                            type="button"
+                            id="addBtn"
+                            onclick="addtask()"
+                            class="btn btn-primary px-4">
+                            Add
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered align-middle">
+
+                        <thead class="table-secondary">
+
+                            <tr class="text-center">
+                                <th width="10%">Tick Mark</th>
+                                <th width="20%">Task ID</th>
+                                <th>Task</th>
+                                <th width="30%">Action</th>
+                            </tr>
+                            
+                        </thead>
+
+                        <tbody id="records"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
-
-    <script>
+</div>
+ <script>
         let viewtask=()=>{
              document.getElementById('addBtn').textContent="Add"
             let data=""
             let list=JSON.parse(localStorage.getItem('list')) || []
             list.map((val,index)=>{
-                let {taskid,task,status}=val
+                let {tick,taskid,task,status}=val
 
-                data+=`
-                    <tr align="center">
-                        <td>${taskid}</td>
-                        <td>${task}</td>
-                        <td>${status} || <button onClick="deletetask(${taskid})"> Delete </button>
-                                        || <button onClick="edittask(${taskid})"> Edit </button>
+               data += `
+                        <tr class="text-center">
+                            <td><input type="checkbox" class="task-checkbox"></td>
+                            <td>${taskid}</td>
+
+                        <td class="text-start">
+                            <span>${task}</span>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-warning btn-sm me-2"
+                                onclick="edittask(${taskid})">
+                                <i class="bi bi-pencil"></i> Edit
+                            </button>
+
+                            <button class="btn btn-danger btn-sm"
+                                onclick="deletetask(${taskid})">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
                         </td>
                     </tr>
-                `
+                    `;
             })
 
                 document.getElementById('records').innerHTML = data;

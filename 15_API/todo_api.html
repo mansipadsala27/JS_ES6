@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background:#121212;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .todo-container{
+            width:90%;
+            margin:40px auto;
+            background:#1e1e1e;
+            border-radius:15px;
+            padding:30px;
+            box-shadow:0 0 25px rgba(0,255,170,.2);
+        }
+
+        h1{
+            color:#a4d0bb;
+            text-align:center;
+            margin-bottom:25px;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+
+        table{
+            color:white;
+        }
+
+        thead{
+            background:#00c853;
+            color:white;
+        }
+
+        tbody tr{
+            transition:.3s;
+        }
+
+        tbody tr:hover{
+            background:#2d2d2d;
+            transform:scale(1.01);
+        }
+
+        td,th{
+            padding:15px !important;
+            vertical-align:middle;
+        }
+
+        .completed{
+            background:#198754;
+            color:white;
+            padding:5px 12px;
+            border-radius:20px;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .pending{
+            background:#dc3545;
+            color:white;
+            padding:5px 12px;
+            border-radius:20px;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .table{
+            border-radius:10px;
+            overflow:hidden;
+        }
+        .table-responsive table th{
+            color: #ddc7ad;
+        } 
+    </style>
+</head>
+<body>
+
+<div class="todo-container">
+
+    <h1>Todo Dashboard</h1>
+
+    <div class="table-responsive">
+
+        <table class="table table-dark table-hover align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Todo</th>
+                    <th>Status</th>
+                    <th>User ID</th>
+                </tr>
+            </thead>
+
+            <tbody id="todotable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+$.ajax({
+    method:'GET',
+    url:'https://dummyjson.com/todos',
+
+    success:function(data){
+
+        let todo=data.todos;
+        let res="";
+
+        todo.map((v)=>{
+
+            res+=`
+                <tr>
+                    <td>${v.id}</td>
+                    <td>${v.todo}</td>
+
+                    <td>
+                        ${
+                            v.completed
+                            ? '<span class="completed">✔ Completed</span>'
+                            : '<span class="pending">✖ Pending</span>'
+                        }
+                    </td>
+
+                    <td>${v.userId}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("todotable").innerHTML=res;
+
+    }
+})
+
+</script>
+
+</body>
+</html>
