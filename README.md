@@ -21,3 +21,8 @@ DOM_PROJECTS
 5- dice 
 
 <img width="1920" height="1080" alt="Screenshot (499)" src="https://github.com/user-attachments/assets/0977d5f2-bad0-4234-b4ee-9d708cc52662" />
+
+6-CRUD
+
+<img width="1920" height="1080" alt="Screenshot (514)" src="https://github.com/user-attachments/assets/a3cd43a0-0b0c-474e-881a-0f655c8127a4" />
+
