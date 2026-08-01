@@ -300,7 +300,8 @@ h1,h2,h3,h4,h5,h6{
 .hourly{
     display:flex;
     overflow:auto;
-    gap:12px;
+    gap: 20PX;
+    
 }
 
 .hourly::-webkit-scrollbar{
@@ -308,7 +309,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .hour{
-    min-width:75px;
+    width:90px;
     text-align:center;
     background:rgba(255,255,255,.08);
     padding:10px;
